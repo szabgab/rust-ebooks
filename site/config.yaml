@@ -24,3 +24,5 @@ navbar:
     - path: /
       title: Home
   end:
+    - path: /about
+      title: About

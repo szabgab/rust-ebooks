@@ -16,17 +16,14 @@ The books are copyright their respective authors and are available under their r
 
 The epub files were generated using the [mdbook-epub](https://crates.io/crates/mdbook-epub) crate.
 
+You can download the files from here and the you can [send them to your Kindle](https://www.amazon.com/sendtokindle).
+
 * [The Rust Programming Language](https://github.com/rust-lang/book)
 * [Rust By Example](https://github.com/rust-lang/rust-by-example)
 * [The Rust Language Reference](https://github.com/rust-lang/reference/)
 * [The Rust Edition Guide](https://github.com/rust-lang/edition-guide)
 * ... and [more](https://bookshelf.rs/)
 
-Along with instructions how to [send the files to the Kindle](https://www.amazon.com/sendtokindle)
 
 
-## About
-
-This site was created and is maintained by [Gabor Szabo](https://szabgab.com/) who also runs the [Rust Maven](https://rust.code-maven.com/) site and the [Rust Digger](https://rust-digger.code-maven.com/) project.
-The source code of this site can be found on Github.
 
