@@ -1,7 +1,16 @@
 - repo: https://github.com/rust-lang/book
   title: The Rust Programming Language
   file: the-rust-programming-language.epub
+
 - repo: https://github.com/rust-lang/rust-by-example
   title: Rust By Example
   file: rust-by-example.epub
 
+- repo: https://github.com/rust-lang/reference
+  title: The Rust Language Reference
+  file: the-rust-language-reference.epub
+
+- repo: https://github.com/rust-lang/edition-guide
+
+  title: The Rust Edition Guide
+  file: the-rust-edition-guide.epub

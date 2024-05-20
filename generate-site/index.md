@@ -18,12 +18,6 @@ The epub files were generated using the [mdbook-epub](https://crates.io/crates/m
 
 You can download the files from here and the you can [send them to your Kindle](https://www.amazon.com/sendtokindle).
 
-* [The Rust Programming Language](https://github.com/rust-lang/book)
-* [Rust By Example](https://github.com/rust-lang/rust-by-example)
-* [The Rust Language Reference](https://github.com/rust-lang/reference/)
-* [The Rust Edition Guide](https://github.com/rust-lang/edition-guide)
-* ... and [more](https://bookshelf.rs/)
-
-
+## Books
 
 
