@@ -1,8 +1,9 @@
-- repo: https://github.com/rust-lang/rust
-  folder: src/doc/rustdoc
-  title: The rustdoc book
-  file: the-rustdoc-book
-  web: https://doc.rust-lang.org/rustdoc/
+# This is a big repo and our code does not work for some reason.
+# - repo: https://github.com/rust-lang/rust
+#   folder: src/doc/rustdoc
+#   title: The rustdoc book
+#   file: the-rustdoc-book
+#   web: https://doc.rust-lang.org/rustdoc/
 
 - repo: https://github.com/rust-lang/book
   title: The Rust Programming Language
