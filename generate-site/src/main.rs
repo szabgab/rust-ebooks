@@ -52,7 +52,7 @@ fn main() {
 
         std::fs::copy(epub_path, out.join(&book.file)).unwrap();
 
-        page.push_str(&format!("* [{}](/books/{}) [source]({})", book.title, book.file, book.repo));
+        page.push_str(&format!("* [{}](/books/{}) - [source]({})", book.title, book.file, book.repo));
     }
 
     std::fs::write("../site/pages/index.md", page).unwrap();
