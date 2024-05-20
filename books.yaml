@@ -51,3 +51,9 @@
   title: Asynchronous Programming in Rust
   file: asynchronous-programming-in-rust.epub
   web: https://rust-lang.github.io/async-book/
+
+- repo: https://github.com/rustwasm/book
+  title: Rust 🦀 and WebAssembly 🕸
+  file: rust-and-webassembly.ebub
+  web: https://rustwasm.github.io/docs/book/
+
