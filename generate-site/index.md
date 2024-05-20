@@ -12,7 +12,7 @@ I personally like to read books off-line on my Kindle device or even on my phone
 
 On this site you'll find a number of Rust-related books in epub format.
 
-The books are copyright their respective authors and are available under their respecive licenses.
+The books are copyright their respective authors and are available under their respective licenses.
 
 The epub files were generated using the [mdbook-epub](https://crates.io/crates/mdbook-epub) crate.
 
