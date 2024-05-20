@@ -71,6 +71,8 @@ fn main() {
         page.push_str(&format!(" - [source]({})\n", book.repo));
     }
 
+    println!("Creating markdown page");
+    std::fs::create_dir_all("../site/pages").unwrap();
     std::fs::write("../site/pages/index.md", page).unwrap();
 
 }
