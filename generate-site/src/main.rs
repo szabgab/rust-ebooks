@@ -7,6 +7,7 @@ use serde::Deserialize;
 use tempdir::TempDir;
 
 #[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
 struct Book {
     repo: String,
     title: String,
