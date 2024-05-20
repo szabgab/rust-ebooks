@@ -31,10 +31,11 @@
   file: rust-nursery-coookbook.epub
   web: https://rust-lang-nursery.github.io/rust-cookbook/
 
-- repo: https://github.com/rust-lang/rustc-dev-guide
-  title: Rust Compiler Development Guide
-  file: rust-compiler-development-guide.epub
-  web: https://rustc-dev-guide.rust-lang.org/
+    # fails
+    # - repo: https://github.com/rust-lang/rustc-dev-guide
+    #   title: Rust Compiler Development Guide
+    #   file: rust-compiler-development-guide.epub
+    #   web: https://rustc-dev-guide.rust-lang.org/
 
 - repo: https://github.com/rust-lang/rust/
   title: Rust error codes index
