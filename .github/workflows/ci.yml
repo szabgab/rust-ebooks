@@ -38,7 +38,9 @@ jobs:
             cargo install mdbook-epub
 
       - name: Generate books
-        run: ./generate.sh
+        run: |
+          cd generate-site
+          cargo run
 
       - name: Download processor
         run: |
