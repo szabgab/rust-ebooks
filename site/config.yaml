@@ -2,7 +2,7 @@ url: https://rust-ebooks.code-maven.com
 repo: https://github.com/szabgab/rust-ebooks
 branch: main
 site_name: Rust Ebooks
-link_to_source: true
+link_to_source: false
 footer: The Rust Ebooks
 tags:
   title: Tags
