@@ -59,7 +59,7 @@ fn main() {
             Some(buy) => page.push_str(&format!(" - [buy]({})", buy)),
             None => {},
         }
-        page.push_str(&format!(" - [source]({})", book.repo));
+        page.push_str(&format!(" - [source]({})\n", book.repo));
     }
 
     std::fs::write("../site/pages/index.md", page).unwrap();
