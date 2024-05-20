@@ -21,8 +21,4 @@ authors:
 
 navbar:
   start:
-    - path: /
-      title: Home
   end:
-    - path: /about
-      title: About

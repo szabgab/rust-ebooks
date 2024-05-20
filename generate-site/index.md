@@ -18,6 +18,11 @@ The epub files were generated using the [mdbook-epub](https://crates.io/crates/m
 
 You can download the files from here and then you can [send them to your Kindle](https://www.amazon.com/sendtokindle).
 
+## About
+
+This site was created and is maintained by [Gabor Szabo](https://szabgab.com/) who also runs the [Rust Maven](https://rust.code-maven.com/) site and the [Rust Digger](https://rust-digger.code-maven.com/) project.
+The source code of this site can be found on [Github](https://github.com/szabgab/rust-ebooks/).
+
 ## Books
 
 
