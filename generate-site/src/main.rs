@@ -12,6 +12,8 @@ struct Book {
     repo: String,
     title: String,
     file: String,
+    web: String,
+    buy: Option<String>,
 }
 
 fn main() {
@@ -52,7 +54,12 @@ fn main() {
 
         std::fs::copy(epub_path, out.join(&book.file)).unwrap();
 
-        page.push_str(&format!("* [{}](/books/{}) - [source]({})", book.title, book.file, book.repo));
+        page.push_str(&format!("* [{}](/books/{}) - [web]({})", book.title, book.file, book.web, ));
+        match book.buy {
+            Some(buy) => page.push_str(&format!(" - [buy]({})", buy)),
+            None => {},
+        }
+        page.push_str(&format!(" - [source]({})", book.repo));
     }
 
     std::fs::write("../site/pages/index.md", page).unwrap();
