@@ -10,10 +10,17 @@ use tempdir::TempDir;
 #[serde(deny_unknown_fields)]
 struct Book {
     repo: String,
+
+    #[serde(default = "get_empty_sting")]
+    folder: String,
     title: String,
     file: String,
     web: String,
     buy: Option<String>,
+}
+
+fn get_empty_sting() -> String {
+    String::new()
 }
 
 fn main() {
@@ -26,15 +33,17 @@ fn main() {
 
     for book in books {
         let tmp_dir = TempDir::new("example").unwrap();
-        let path = tmp_dir.path().join("repo").display().to_string();
-        println!("{path}");
+        let path_to_git_workspace = tmp_dir.path().join("repo").display().to_string();
+        println!("Cloning {}", book.repo);
+        println!("{path_to_git_workspace}");
         let _result = Command::new("git")
-        .args(["clone", "--depth", "1", &book.repo, &path])
+        .args(["clone", "--depth", "1", &book.repo, &path_to_git_workspace])
         .output()
         .expect("command failed to start");
 
+        let path_to_ebook_source = PathBuf::from(path_to_git_workspace).join(&book.folder);
         let _result = Command::new("mdbook-epub")
-        .args(["-s", "true", &path])
+        .args(["-s", "true", &path_to_ebook_source.display().to_string()])
         .output()
         .expect("command failed to start");
 

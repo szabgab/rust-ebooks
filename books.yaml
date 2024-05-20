@@ -1,3 +1,9 @@
+- repo: https://github.com/rust-lang/rust
+  folder: src/doc/rustdoc
+  title: The rustdoc book
+  file: the-rustdoc-book
+  web: https://doc.rust-lang.org/rustdoc/
+
 - repo: https://github.com/rust-lang/book
   title: The Rust Programming Language
   file: the-rust-programming-language.epub
@@ -18,3 +24,10 @@
   title: The Rust Edition Guide
   file: the-rust-edition-guide.epub
   web: https://doc.rust-lang.org/edition-guide/
+
+- repo: https://github.com/rust-lang-nursery/rust-cookbook
+  title: The Rust Cookbook of the Rust Lang Nursery
+  file: rust-nursery-coookbook.epub
+  web: https://rust-lang-nursery.github.io/rust-cookbook/
+
+
