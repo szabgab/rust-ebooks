@@ -1,5 +1,5 @@
 ---
-title: Rust ebooks for Amazon Kindle
+title: Free Rust ebooks for Amazon Kindle
 timestamp: 2024-05-20T15:10:01
 published: true
 description: Ebooks about Rust programming
@@ -16,7 +16,7 @@ The books are copyright their respective authors and are available under their r
 
 The epub files were generated using the [mdbook-epub](https://crates.io/crates/mdbook-epub) crate.
 
-You can download the files from here and the you can [send them to your Kindle](https://www.amazon.com/sendtokindle).
+You can download the files from here and then you can [send them to your Kindle](https://www.amazon.com/sendtokindle).
 
 ## Books
 
