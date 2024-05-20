@@ -52,6 +52,7 @@ fn main() {
         .read_dir()
         .unwrap()
         .map(|de| de.unwrap().file_name().to_str().unwrap().to_owned())
+        .filter(|name| name.ends_with(".epub"))
         .collect::<Vec<String>>();
 
         println!("{filenames:?}");
