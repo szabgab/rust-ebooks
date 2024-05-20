@@ -4,6 +4,11 @@
 #   title: The rustdoc book
 #   file: the-rustdoc-book
 #   web: https://doc.rust-lang.org/rustdoc/
+# - repo: https://github.com/rust-lang/rust
+#   title: Rust error codes index
+#   file: rust-error-codes-index.epub
+#   web: https://doc.rust-lang.org/error_codes/error-index.html
+
 
 - repo: https://github.com/rust-lang/book
   title: The Rust Programming Language
@@ -36,11 +41,6 @@
     #   title: Rust Compiler Development Guide
     #   file: rust-compiler-development-guide.epub
     #   web: https://rustc-dev-guide.rust-lang.org/
-
-- repo: https://github.com/rust-lang/rust/
-  title: Rust error codes index
-  file: rust-error-codes-index.epub
-  web: https://doc.rust-lang.org/error_codes/error-index.html
 
 - repo: https://github.com/rust-cli/book
   title: Command Line Applications in Rust
