@@ -47,10 +47,10 @@
   file: command-line-applications-in-rust.epub
   web: https://rust-cli.github.io/book/
 
-- repo: https://github.com/rust-lang/async-book
-  title: Asynchronous Programming in Rust
-  file: asynchronous-programming-in-rust.epub
-  web: https://rust-lang.github.io/async-book/
+    #- repo: https://github.com/rust-lang/async-book
+    #  title: Asynchronous Programming in Rust
+    #  file: asynchronous-programming-in-rust.epub
+    #  web: https://rust-lang.github.io/async-book/
 
 - repo: https://github.com/rustwasm/book
   title: Rust 🦀 and WebAssembly 🕸
