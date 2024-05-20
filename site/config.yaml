@@ -1,0 +1,26 @@
+url: https://rust-ebooks.code-maven.com
+repo: https://github.com/szabgab/rust-ebooks
+branch: main
+site_name: Rust Ebooks
+link_to_source: true
+footer: The Rust Ebooks
+tags:
+  title: Tags
+  description: Ebooks
+from:
+  name: Gabor Szabo
+  email: gabor@szabgab.com
+archive:
+  title: Archive
+  description: List of all the articles about the Rust Ebooks site
+
+authors:
+  - name: Gabor Szabo
+    nickname: szabgab
+    picture: szabgab.png
+
+navbar:
+  start:
+    - path: /
+      title: Home
+  end:
