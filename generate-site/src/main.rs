@@ -1,10 +1,9 @@
 use std::{
-    os::unix::process::ExitStatusExt, path::PathBuf, process::{Command, ExitStatus}
+    path::PathBuf, process::Command
 };
 
 
 use serde::Deserialize;
-use serde_yaml;
 use tempdir::TempDir;
 
 #[derive(Debug, Deserialize)]
