@@ -39,7 +39,6 @@ jobs:
 
       - name: Generate books
         run: |
-          cd generate-site
           cargo run
 
       - name: Upload artifact
