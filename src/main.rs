@@ -24,7 +24,7 @@ fn get_empty_sting() -> String {
 }
 
 fn main() {
-    let book_yaml_file = "../books.yaml";
+    let book_yaml_file = "books.yaml";
     let content = std::fs::read_to_string(book_yaml_file).unwrap();
     let books: Vec<Book> = serde_yaml::from_str(&content).unwrap();
     println!("{:#?}", books);
@@ -58,12 +58,12 @@ fn main() {
         let epub_path = book_path.join(&filenames[0]);
         println!("{epub_path:?}");
 
-        let out = PathBuf::from("../_site/books");
+        let out = PathBuf::from("_site");
         std::fs::create_dir_all(&out).unwrap();
 
         std::fs::copy(epub_path, out.join(&book.file)).unwrap();
 
-        page.push_str(&format!(r#"<li><a href="/books/{}">{}</a> - [<a href="{}">web</a>]"#, book.file, book.title, book.web));
+        page.push_str(&format!(r#"<li><a href="{}">{}</a> - [<a href="{}">web</a>]"#, book.file, book.title, book.web));
         match book.buy {
             Some(buy) => page.push_str(&format!(r#" - [<a href="{}">buy</a>]"#, buy)),
             None => {},
@@ -76,7 +76,6 @@ fn main() {
     let html = html.replace("PLACEHOLDER", &page);
 
     println!("Creating markdown page");
-    std::fs::create_dir_all("../_site").unwrap();
-    std::fs::write("../_site/index.html", html).unwrap();
+    std::fs::write("_site/index.html", html).unwrap();
 
 }
