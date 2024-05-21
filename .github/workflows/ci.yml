@@ -42,15 +42,6 @@ jobs:
           cd generate-site
           cargo run
 
-      - name: Download processor
-        run: |
-          wget https://ssg.code-maven.com/code-maven
-          chmod +x code-maven
-
-      - name: Generate pages
-        run: |
-          ./code-maven web --root site
-
       - name: Upload artifact
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
