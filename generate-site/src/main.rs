@@ -29,8 +29,7 @@ fn main() {
     let books: Vec<Book> = serde_yaml::from_str(&content).unwrap();
     println!("{:#?}", books);
 
-    let mut page = std::fs::read_to_string("index.md").unwrap();
-
+    let mut page = String::new();
     for book in books {
         let tmp_dir = TempDir::new("example").unwrap();
         let path_to_git_workspace = tmp_dir.path().join("repo").display().to_string();
@@ -64,16 +63,20 @@ fn main() {
 
         std::fs::copy(epub_path, out.join(&book.file)).unwrap();
 
-        page.push_str(&format!("* [{}](/books/{}) - [web]({})", book.title, book.file, book.web, ));
+        page.push_str(&format!(r#"<li><a href="/books/{}">{}</a> - [<a href="{}">web</a>]"#, book.file, book.title, book.web));
         match book.buy {
-            Some(buy) => page.push_str(&format!(" - [buy]({})", buy)),
+            Some(buy) => page.push_str(&format!(r#" - [<a href="{}">buy</a>]"#, buy)),
             None => {},
         }
-        page.push_str(&format!(" - [source]({})\n", book.repo));
+        page.push_str(&format!(r#" - [<a href="{}">source</a>]</li>"#, book.repo));
     }
 
+
+    let html = std::fs::read_to_string("index.html").unwrap();
+    let html = html.replace("PLACEHOLDER", &page);
+
     println!("Creating markdown page");
-    std::fs::create_dir_all("../site/pages").unwrap();
-    std::fs::write("../site/pages/index.md", page).unwrap();
+    std::fs::create_dir_all("../_site").unwrap();
+    std::fs::write("../_site/index.html", html).unwrap();
 
 }
