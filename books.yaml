@@ -57,3 +57,8 @@
   file: rust-and-webassembly.ebub
   web: https://rustwasm.github.io/docs/book/
 
+- repo: https://github.com/rust-lang/nomicon
+  title: The Rustonomicon
+  file: rust-nomicon.ebub
+  web: https://doc.rust-lang.org/nomicon/
+
