@@ -1,7 +1,4 @@
-use std::{
-    path::PathBuf, process::Command
-};
-
+use std::{path::PathBuf, process::Command};
 
 use serde::Deserialize;
 use tempdir::TempDir;
@@ -33,26 +30,30 @@ fn main() {
     for book in books {
         let tmp_dir = TempDir::new("example").unwrap();
         let path_to_git_workspace = tmp_dir.path().join("repo").display().to_string();
-        println!("Cloning {}", book.repo);
-        println!("{path_to_git_workspace}");
-        let _result = Command::new("git")
-        .args(["clone", "--depth", "1", &book.repo, &path_to_git_workspace])
-        .output()
-        .expect("command failed to start");
+        println!("Cloning '{}' to {}", book.repo, path_to_git_workspace);
 
+        let mut cmd = Command::new("git");
+        cmd.args(["clone", "--depth", "1", &book.repo, &path_to_git_workspace]);
+        println!("cmd: {:?}", cmd);
+
+        let _result = cmd.output().expect("command failed to start");
+
+        println!("Running mdbook-epub");
         let path_to_ebook_source = PathBuf::from(path_to_git_workspace).join(&book.folder);
-        let _result = Command::new("mdbook-epub")
-        .args(["-s", "true", &path_to_ebook_source.display().to_string()])
-        .output()
-        .expect("command failed to start");
+        let mut cmd = Command::new("mdbook-epub");
+        cmd.args(["--standalone", &path_to_ebook_source.display().to_string()]);
+        println!("cmd: {:?}", cmd);
+
+        let _result = cmd.output().expect("command failed to start");
 
         let book_path = tmp_dir.path().join("repo").join("book");
+        println!("book_path: {:?}", book_path);
         let filenames = book_path
-        .read_dir()
-        .unwrap()
-        .map(|de| de.unwrap().file_name().to_str().unwrap().to_owned())
-        .filter(|name| name.ends_with(".epub"))
-        .collect::<Vec<String>>();
+            .read_dir()
+            .unwrap()
+            .map(|de| de.unwrap().file_name().to_str().unwrap().to_owned())
+            .filter(|name| name.ends_with(".epub"))
+            .collect::<Vec<String>>();
 
         println!("{filenames:?}");
         let epub_path = book_path.join(&filenames[0]);
@@ -63,19 +64,20 @@ fn main() {
 
         std::fs::copy(epub_path, out.join(&book.file)).unwrap();
 
-        page.push_str(&format!(r#"<li><a href="{}">{}</a> - [<a href="{}">web</a>]"#, book.file, book.title, book.web));
+        page.push_str(&format!(
+            r#"<li><a href="{}">{}</a> - [<a href="{}">web</a>]"#,
+            book.file, book.title, book.web
+        ));
         match book.buy {
             Some(buy) => page.push_str(&format!(r#" - [<a href="{}">buy</a>]"#, buy)),
-            None => {},
+            None => {}
         }
         page.push_str(&format!(r#" - [<a href="{}">source</a>]</li>"#, book.repo));
     }
-
 
     let html = std::fs::read_to_string("index.html").unwrap();
     let html = html.replace("PLACEHOLDER", &page);
 
     println!("Creating markdown page");
     std::fs::write("_site/index.html", html).unwrap();
-
 }
