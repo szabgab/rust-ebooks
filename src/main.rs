@@ -25,6 +25,8 @@ fn main() {
     let content = std::fs::read_to_string(book_yaml_file).unwrap();
     let books: Vec<Book> = serde_yaml::from_str(&content).unwrap();
     println!("{:#?}", books);
+    let start = chrono::Utc::now();
+
 
     let mut page = String::new();
     for book in books {
@@ -75,6 +77,9 @@ fn main() {
         page.push_str(&format!(r#" - [<a href="{}">source</a>]</li>"#, book.repo));
     }
 
+    let end = chrono::Utc::now();
+    page.push_str(&format!(r#" <p>Generated on :{}</p>"#, end.format("%Y-%m-%d %H:%M:%S")));
+    page.push_str(&format!(r#" <p>Elapsed time :{} sec.</p>"#, (end-start).num_seconds()));
     let html = std::fs::read_to_string("index.html").unwrap();
     let html = html.replace("PLACEHOLDER", &page);
 
