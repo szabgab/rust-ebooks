@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4.40"
+liquid = "0.26.11"
 serde = { version = "1.0.202", features = ["derive"] }
 serde_yaml = "0.9.34"
 tempdir = "0.3.7"

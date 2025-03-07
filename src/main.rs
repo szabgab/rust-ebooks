@@ -85,9 +85,22 @@ fn main() {
         r#" <p>Elapsed time :{} sec.</p>"#,
         (end - start).num_seconds()
     ));
-    let html = std::fs::read_to_string("index.html").unwrap();
-    let html = html.replace("PLACEHOLDER", &page);
 
-    println!("Creating markdown page");
-    std::fs::write("_site/index.html", html).unwrap();
+    generate_page("index.html", "_site/index.html", &page);
+}
+
+fn generate_page(template_filename: &str, html_filename: &str, content: &str) {
+    println!("Creating HTML page");
+    let template = liquid::ParserBuilder::with_stdlib()
+        .build()
+        .unwrap()
+        .parse_file(template_filename)
+        .unwrap();
+
+    let globals = liquid::object!({
+        "content": content
+    });
+    let output = template.render(&globals).unwrap();
+
+    std::fs::write(html_filename, output).unwrap();
 }
