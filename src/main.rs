@@ -27,7 +27,6 @@ fn main() {
     println!("{:#?}", books);
     let start = chrono::Utc::now();
 
-
     let mut page = String::new();
     for book in books {
         let tmp_dir = TempDir::new("example").unwrap();
@@ -78,8 +77,14 @@ fn main() {
     }
 
     let end = chrono::Utc::now();
-    page.push_str(&format!(r#" <p>Generated on :{}</p>"#, end.format("%Y-%m-%d %H:%M:%S")));
-    page.push_str(&format!(r#" <p>Elapsed time :{} sec.</p>"#, (end-start).num_seconds()));
+    page.push_str(&format!(
+        r#" <p>Generated on :{}</p>"#,
+        end.format("%Y-%m-%d %H:%M:%S")
+    ));
+    page.push_str(&format!(
+        r#" <p>Elapsed time :{} sec.</p>"#,
+        (end - start).num_seconds()
+    ));
     let html = std::fs::read_to_string("index.html").unwrap();
     let html = html.replace("PLACEHOLDER", &page);
 
