@@ -1,5 +1,6 @@
 use std::{path::PathBuf, process::Command};
 
+use chrono::{DateTime, Utc};
 use serde::Deserialize;
 use tempdir::TempDir;
 
@@ -77,19 +78,17 @@ fn main() {
     }
 
     let end = chrono::Utc::now();
-    page.push_str(&format!(
-        r#" <p>Generated on :{}</p>"#,
-        end.format("%Y-%m-%d %H:%M:%S")
-    ));
-    page.push_str(&format!(
-        r#" <p>Elapsed time :{} sec.</p>"#,
-        (end - start).num_seconds()
-    ));
 
-    generate_page("index.html", "_site/index.html", &page);
+    generate_page("index.html", "_site/index.html", &page, start, end);
 }
 
-fn generate_page(template_filename: &str, html_filename: &str, content: &str) {
+fn generate_page(
+    template_filename: &str,
+    html_filename: &str,
+    content: &str,
+    start: DateTime<Utc>,
+    end: DateTime<Utc>,
+) {
     println!("Creating HTML page");
     let template = liquid::ParserBuilder::with_stdlib()
         .build()
@@ -98,7 +97,9 @@ fn generate_page(template_filename: &str, html_filename: &str, content: &str) {
         .unwrap();
 
     let globals = liquid::object!({
-        "content": content
+        "content": content,
+        "generated_at": end.format("%Y-%m-%d %H:%M:%S").to_string(),
+        "elapsed_time": (end - start).num_seconds().to_string(),
     });
     let output = template.render(&globals).unwrap();
 
