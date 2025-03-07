@@ -41,7 +41,15 @@
 <h2>Books</h2>
 
 <ul>
-    {{content}}
+    {% for book in books %}
+        <li>
+            <a href="{{book.file}}">{{book.title}}</a> - [<a href="{book.web}">web</a>]
+            {% if book.buy %}
+                - [<a href="{{book.buy}}">buy</a>]
+            {% endif %}
+            - [<a href="{{book.repo}}">source</a>]
+        </li>
+    {% endfor %}
 </ul>
 
 <h2>About</h2>

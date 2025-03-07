@@ -1,10 +1,10 @@
 use std::{path::PathBuf, process::Command};
 
 use chrono::{DateTime, Utc};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use tempdir::TempDir;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 struct Book {
     repo: String,
@@ -28,8 +28,7 @@ fn main() {
     println!("{:#?}", books);
     let start = chrono::Utc::now();
 
-    let mut page = String::new();
-    for book in books {
+    for book in &books {
         let tmp_dir = TempDir::new("example").unwrap();
         let path_to_git_workspace = tmp_dir.path().join("repo").display().to_string();
         println!("Cloning '{}' to {}", book.repo, path_to_git_workspace);
@@ -65,27 +64,17 @@ fn main() {
         std::fs::create_dir_all(&out).unwrap();
 
         std::fs::copy(epub_path, out.join(&book.file)).unwrap();
-
-        page.push_str(&format!(
-            r#"<li><a href="{}">{}</a> - [<a href="{}">web</a>]"#,
-            book.file, book.title, book.web
-        ));
-        match book.buy {
-            Some(buy) => page.push_str(&format!(r#" - [<a href="{}">buy</a>]"#, buy)),
-            None => {}
-        }
-        page.push_str(&format!(r#" - [<a href="{}">source</a>]</li>"#, book.repo));
     }
 
     let end = chrono::Utc::now();
 
-    generate_page("index.html", "_site/index.html", &page, start, end);
+    generate_page("index.html", "_site/index.html", &books, start, end);
 }
 
 fn generate_page(
     template_filename: &str,
     html_filename: &str,
-    content: &str,
+    books: &[Book],
     start: DateTime<Utc>,
     end: DateTime<Utc>,
 ) {
@@ -97,7 +86,7 @@ fn generate_page(
         .unwrap();
 
     let globals = liquid::object!({
-        "content": content,
+        "books": books,
         "generated_at": end.format("%Y-%m-%d %H:%M:%S").to_string(),
         "elapsed_time": (end - start).num_seconds().to_string(),
     });
